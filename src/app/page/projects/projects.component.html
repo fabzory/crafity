@@ -1,0 +1,45 @@
+<div class="w-full">
+  <div class="flex flex-col">
+    <div class="m-auto flex flex-col px-4 md:w-2/3 md:px-0">
+      <h1 class="my-8 flex w-full justify-center">- The last three -</h1>
+    </div>
+    @if (store.projectSectionExpanded()) {
+      <div
+        [@routeAnimations]="
+          direction === 'left' ? getRouteAnimationData() : 'nope'
+        "
+        [@routeAnimationsLeft]="
+          direction === 'right' ? getRouteAnimationData() : 'nope'
+        ">
+        <router-outlet></router-outlet>
+      </div>
+      @if (store.projectsVisibility().visible) {
+        <ux-navigator
+          class="flex w-full justify-center"
+          [ngClass]="
+            store.projectsVisibility().bottom
+              ? 'static'
+              : 'fixed bottom-4 right-0'
+          "
+          (direction)="directionChange($event)" />
+      }
+    } @else {
+      <div
+        class="m-auto flex w-full flex-wrap justify-center px-4 md:w-2/3 md:px-0">
+        @for (project of projectList; track project) {
+          <button
+            class="m-4 flex w-80 flex-col justify-center rounded bg-gray-600 px-8 py-4 text-white"
+            (click)="
+              router.navigate([project.path]); this.store.scrollTo('projects')
+            ">
+            <div class="w-full font-bold">{{ project.name }}</div>
+            <div class="w-full italic">{{ project.description }}</div>
+          </button>
+        }
+        Ask me also about the other projects, for example: <br />- How I
+        improved booking for ... RBS <br />- How I created the organs for
+        LaparoS <br />- How we researched the next big features for LaparoS
+      </div>
+    }
+  </div>
+</div>

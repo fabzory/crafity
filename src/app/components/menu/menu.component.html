@@ -1,0 +1,41 @@
+<div
+  class="item absolute right-0 top-0 z-30 flex justify-end"
+  [ngClass]="store.menuOn() ? 'h-20 w-full' : 'h-12'"
+  (mouseenter)="showMenu(true)"
+  (mouseleave)="showMenu(false)"
+>
+  @if (store.menuOn() && !store.isMobile()) {
+  <div class="flex w-full justify-between bg-white/30 px-96 backdrop-blur-lg">
+    @for (anchor of anchors; track anchor) {
+    <button
+      [ngClass]="{ 'font-extrabold': anchor.id === store.anchor() }"
+      (click)="scrollTo(anchor.id)"
+    >
+      {{ anchor.title }}
+    </button>
+    }
+  </div>
+  } @if (store.menuOn() && store.isMobile()) {
+  <div
+    class="flex h-screen w-full flex-col items-center justify-between bg-white/30 py-40 backdrop-blur-lg"
+  >
+    @for (anchor of anchors; track anchor) {
+    <button (click)="scrollTo(anchor.id)">
+      {{ anchor.title }}
+    </button>
+    }
+  </div>
+  } @if (store.menuIconOn()) {
+  <div
+    class="absolute right-0 top-0 z-50 flex h-20 flex-col justify-center pr-4"
+  >
+    <dotlottie-wc
+      class="size-8 h-full"
+      id="player"
+      src="animations/hamburger-menu.lottie"
+      (click)="play()"
+    >
+    </dotlottie-wc>
+  </div>
+  }
+</div>

@@ -1,0 +1,32 @@
+<div
+  class="sticky top-0 z-50 w-full"
+  [ngClass]="{
+    hidden:
+      scrollPercentage > 10 &&
+      scrollPercentage < 90 &&
+      scrollService.scrollDirection() === 'up'
+  }">
+  <ux-menu class="w-full" />
+</div>
+<div class="flex h-full flex-col overflow-y-auto">
+  <ux-intro
+    id="intro"
+    class="my-6"
+    [ngClass]="{ 'animate-pop': store.anchor() === 'intro' }" />
+  <ux-projects
+    id="projects"
+    class="my-6"
+    [ngClass]="{ 'animate-pop': store.anchor() === 'projects' }" />
+  <ux-craft
+    id="craft"
+    class="my-6"
+    [ngClass]="{ 'animate-pop': store.anchor() === 'craft' }" />
+  <ux-skills
+    id="skills"
+    class="my-6"
+    [ngClass]="{ 'animate-pop': store.anchor() === 'skills' }" />
+  <ux-contact
+    id="contact"
+    class="my-6"
+    [ngClass]="{ 'animate-pop': store.anchor() === 'contact' }" />
+</div>

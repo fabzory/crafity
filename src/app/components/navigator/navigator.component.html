@@ -1,0 +1,22 @@
+@if (store.projectSectionExpanded()) {
+<div class="flex w-full justify-between px-4">
+  <button
+    (click)="previous()"
+    class="flex size-8 items-center justify-center rounded-full bg-black/80 shadow-lg backdrop-blur-lg"
+  >
+    <svg-icon src="icons/previous.svg" class="fill-white"> </svg-icon>
+  </button>
+  <button
+    class="flex size-8 flex-col items-center justify-center rounded-full bg-black/80 text-white shadow-lg backdrop-blur-lg"
+    (click)="store.hideProjects(); store.scrollTo(null)"
+  >
+    X
+  </button>
+  <button
+    (click)="next()"
+    class="flex size-8 items-center justify-center rounded-full bg-black/80 shadow-lg backdrop-blur-lg"
+  >
+    <svg-icon src="icons/next.svg" class="fill-white"> </svg-icon>
+  </button>
+</div>
+}
